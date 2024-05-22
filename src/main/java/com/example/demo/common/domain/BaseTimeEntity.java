@@ -14,8 +14,4 @@ public class BaseTimeEntity {
 	public String getDateTimeToString() {
 		return localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 	}
-
-	public void setLocalDateTime(LocalDateTime localDateTime) {
-		this.localDateTime = localDateTime;
-	}
 }

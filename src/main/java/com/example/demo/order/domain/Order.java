@@ -1,6 +1,10 @@
 package com.example.demo.order.domain;
 
-public class Order {
+import java.time.LocalDateTime;
+
+import com.example.demo.common.domain.BaseTimeEntity;
+
+public class Order extends BaseTimeEntity {
 
 	private String username;
 	private int quantity;
@@ -9,6 +13,7 @@ public class Order {
 	private EquipmentType equipmentType;
 
 	public Order(int quantity, Long price, String location, EquipmentType equipmentType) {
+		super(LocalDateTime.now());
 		this.quantity = quantity;
 		this.price = price;
 		this.location = location;

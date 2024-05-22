@@ -36,6 +36,8 @@ public class OrderController {
 			System.out.println(username + "님의 주문 내역");
 			for (OrderInfoResponse order : orderListByMember) {
 				System.out.println("| >> 상품명 : " + order.itemName());
+				System.out.println("| >> 주문일 : " + order.orderDate());
+				System.out.println("| >> 배송지 : " + order.location());
 				System.out.println("| >> 상품 가격 : " + order.price());
 				System.out.println("| >> 선택 수량 : " + order.quantity());
 				System.out.println("| >> 결제 금액 : " + order.totalPrice());
