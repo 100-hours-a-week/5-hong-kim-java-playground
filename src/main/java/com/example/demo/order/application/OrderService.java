@@ -5,6 +5,7 @@ import static com.example.demo.order.exception.OrderExceptionType.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.demo.member.application.MemberService;
 import com.example.demo.member.domain.Member;
 import com.example.demo.order.application.dto.OrderInfoResponse;
 import com.example.demo.order.domain.Order;
@@ -13,9 +14,11 @@ import com.example.demo.order.exception.OrderException;
 
 public class OrderService {
 
+	private final MemberService memberService;
 	private final OrderRepository orderRepository;
 
-	public OrderService(OrderRepository orderRepository) {
+	public OrderService(MemberService memberService, OrderRepository orderRepository) {
+		this.memberService = memberService;
 		this.orderRepository = orderRepository;
 	}
 
@@ -32,7 +35,7 @@ public class OrderService {
 		String username = member.getUsername();
 		orderRepository.save(username, order);
 
-		member.decreaseBalance(totalPrice);
+		memberService.processPayment(totalPrice);
 	}
 
 	public Long getOrderPrice(Order order) {

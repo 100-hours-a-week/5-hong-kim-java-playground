@@ -1,5 +1,6 @@
 package com.example.demo.order;
 
+import com.example.demo.member.MemberContainer;
 import com.example.demo.order.application.OrderService;
 import com.example.demo.order.domain.repository.OrderRepository;
 import com.example.demo.order.infrastructure.InMemoryOrderRepository;
@@ -21,7 +22,10 @@ public class OrderContainer {
 	}
 
 	private static class OrderServiceHolder {
-		private static final OrderService INSTANCE = new OrderService(orderRepository());
+		private static final OrderService INSTANCE = new OrderService(
+			MemberContainer.memberService(),
+			orderRepository()
+		);
 	}
 
 	public static OrderService orderService() {
