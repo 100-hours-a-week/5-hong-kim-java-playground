@@ -1,10 +1,13 @@
 package com.example.demo.member.application;
 
+import static com.example.demo.member.exception.MemberExceptionType.*;
+
 import com.example.demo.common.auth.AuthContext;
 import com.example.demo.member.application.dto.OwnInfoResponse;
 import com.example.demo.member.domain.Member;
 import com.example.demo.member.domain.MemberType;
 import com.example.demo.member.domain.repository.MemberRepository;
+import com.example.demo.member.exception.MemberException;
 
 // TODO: 예외처리 세분화
 public class MemberService {
@@ -18,11 +21,11 @@ public class MemberService {
 	public void createNewMember(String username, String password, String joinType) {
 		memberRepository.findByUsername(username)
 			.ifPresent((member) -> {
-				throw new RuntimeException("중복된 이름");
+				throw new MemberException(DUPLICATE_USERNAME);
 			});
 
 		MemberType memberType = MemberType.getMemberTypeByName(joinType)
-			.orElseThrow(RuntimeException::new);
+			.orElseThrow(() -> new MemberException(INVALID_MEMBER_TYPE));
 
 		Member member = new Member.Builder()
 			.username(username)
@@ -35,36 +38,37 @@ public class MemberService {
 
 	public void loginMember(String username, String password) {
 		Member member = memberRepository.findByUsername(username)
-			.orElseThrow(RuntimeException::new);
+			.orElseThrow(() -> new MemberException(NOT_EXIST_MEMBER));
 
 		if (!member.isMatchPassword(password)) {
-			throw new RuntimeException("비밀번호가 다름");
+			throw new MemberException(MISMATCH_PASSWORD);
 		}
 
 		AuthContext.getInstance().setCurrentMember(member);
 	}
 
 	public void rechargeBalance(Long balance) {
-		Member member = AuthContext.getInstance().getCurrentMember()
-			.orElseThrow(RuntimeException::new);
+		Member member = getCurrentMember();
 		member.increaseBalance(balance);
 	}
 
 	public void processPayment(Long balance) {
-		Member member = AuthContext.getInstance().getCurrentMember()
-			.orElseThrow(RuntimeException::new);
+		Member member = getCurrentMember();
 		member.decreaseBalance(balance);
 	}
 
 	public Long getCurrentMemberBalance() {
-		Member member = AuthContext.getInstance().getCurrentMember()
-			.orElseThrow(RuntimeException::new);
+		Member member = getCurrentMember();
 		return member.getBalance();
 	}
 
 	public OwnInfoResponse getCurrentMemberInfo() {
-		Member member = AuthContext.getInstance().getCurrentMember()
-			.orElseThrow(RuntimeException::new);
+		Member member = getCurrentMember();
 		return OwnInfoResponse.of(member);
+	}
+
+	private Member getCurrentMember() {
+		return AuthContext.getInstance().getCurrentMember()
+			.orElseThrow(() -> new MemberException(UN_AUTHORIZATION_MEMBER));
 	}
 }

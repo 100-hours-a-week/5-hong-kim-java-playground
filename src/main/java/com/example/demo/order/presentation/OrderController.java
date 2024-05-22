@@ -16,6 +16,7 @@ import com.example.demo.order.domain.laptop.Laptop;
 import com.example.demo.order.domain.laptop.OSType;
 import com.example.demo.order.domain.monitor.Monitor;
 import com.example.demo.order.domain.monitor.MonitorType;
+import com.example.demo.order.exception.OrderException;
 
 public class OrderController {
 
@@ -87,7 +88,7 @@ public class OrderController {
 				stringBuilder.append("/");
 		}
 
-		System.out.print(message + "(" + stringBuilder + "): ");
+		System.out.print(message + " (" + stringBuilder + "): ");
 		return EnumUtils.getTypeByInputString(enumType);
 	}
 
@@ -112,8 +113,12 @@ public class OrderController {
 		System.out.println(username + "님의 현재 잔액은 " + formattedBeforeBalance + "원 입니다.");
 		System.out.println(formattedOrderPrice + "원 결제를 진행합니다.");
 
-		orderService.orderedItem(currentMember, order);
-		System.out.println("주문 완료");
+		try {
+			orderService.orderedItem(currentMember, order);
+			System.out.println("주문이 완료되었습니다");
+		} catch (OrderException ex) {
+			System.out.println(ex.getMessage());
+		}
 
 		Long afterBalance = currentMember.getBalance();
 		String formattedAfterBalance = FormatUtils.formatWithCommas(afterBalance);
