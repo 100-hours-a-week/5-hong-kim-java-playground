@@ -1,17 +1,19 @@
 package com.example.demo.common.domain;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import com.example.demo.common.utils.FormatUtils;
 
 public class BaseTimeEntity {
 
-	private LocalDateTime localDateTime;
+	private LocalDateTime createdAt;
 
-	public BaseTimeEntity(LocalDateTime localDateTime) {
-		this.localDateTime = localDateTime;
+	public BaseTimeEntity(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public String getDateTimeToString() {
-		return localDateTime.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
+	public String getCreatedTimeToString() {
+		return FormatUtils.formatDateTime(createdAt);
+		// return createdAt.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"));
 	}
 }

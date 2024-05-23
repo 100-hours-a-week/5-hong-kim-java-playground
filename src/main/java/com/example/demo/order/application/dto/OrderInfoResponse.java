@@ -14,7 +14,7 @@ public record OrderInfoResponse(
 	public static OrderInfoResponse of(Order order) {
 		return new OrderInfoResponse(
 			order.getEquipmentType().getDescription(),
-			order.getDateTimeToString(),
+			order.getCreatedTimeToString(),
 			order.getLocation(),
 			order.getPrice(),
 			order.getQuantity(),

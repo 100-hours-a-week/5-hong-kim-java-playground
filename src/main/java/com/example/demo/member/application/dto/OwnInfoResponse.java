@@ -11,7 +11,7 @@ public record OwnInfoResponse(
 	public static OwnInfoResponse of(Member member) {
 		return new OwnInfoResponse(
 			member.getUsername(),
-			member.getDateTimeToString(),
+			member.getCreatedTimeToString(),
 			member.getBalance()
 		);
 	}
