@@ -12,9 +12,11 @@ public class ShopFacadeController {
 	private static final StringBuilder stringBuilder = new StringBuilder();
 
 	private final OrderController orderController;
+	private final ReviewController reviewController;
 
-	public ShopFacadeController(OrderController orderController) {
+	public ShopFacadeController(OrderController orderController, ReviewController reviewController) {
 		this.orderController = orderController;
+		this.reviewController = reviewController;
 	}
 
 	public void process() {
@@ -24,8 +26,48 @@ public class ShopFacadeController {
 			return;
 		}
 
-		StringBuilder stringBuilder = new StringBuilder();
+		while (true) {
+			System.out.println("[1] 주문  [2] 리뷰  [0] 뒤로가기");
 
+			System.out.print("선택 : ");
+			int intInput = InputUtils.getIntInput(0, 2);
+
+			switch (intInput) {
+				case 1:
+					processOrder();
+					break;
+				case 2:
+					processReview(currentMember.get());
+					break;
+				case 0:
+					return;
+			}
+		}
+	}
+
+	private void processReview(Member currentMember) {
+		while (true) {
+			System.out.println("[1] 리뷰작성및수정  [2] 내리뷰보기  [3] 전체리뷰보기  [0] 뒤로가기");
+			System.out.print("선택 : ");
+			int intInput = InputUtils.getIntInput(0, 3);
+
+			switch (intInput) {
+				case 1:
+					reviewController.writeReview(currentMember);
+					break;
+				case 2:
+					reviewController.showOwnReview(currentMember);
+					break;
+				case 3:
+					reviewController.showAllReview();
+					break;
+				case 0:
+					return;
+			}
+		}
+	}
+
+	private void processOrder() {
 		while (true) {
 			EquipmentType[] equipmentTypes = EquipmentType.getEquipmentTypes();
 			for (int i = 0; i < equipmentTypes.length; i++) {
