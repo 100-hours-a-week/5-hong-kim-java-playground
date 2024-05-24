@@ -13,15 +13,12 @@ public class DemoApplication {
 
 			int intInput = InputUtils.getIntInput(0, 2);
 			switch (intInput) {
-				case 1:
-					MemberContainer.memberFacadeController().process();
-					break;
-				case 2:
-					ShopContainer.orderFacadeController().process();
-					break;
-				case 0:
+				case 1 -> MemberContainer.memberFacadeController().process();
+				case 2 -> ShopContainer.orderFacadeController().process();
+				case 0 -> {
 					System.out.println("바이바이");
-					return;
+					System.exit(0);
+				}
 			}
 		}
 	}

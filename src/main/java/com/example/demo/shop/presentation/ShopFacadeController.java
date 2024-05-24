@@ -33,14 +33,11 @@ public class ShopFacadeController {
 			int intInput = InputUtils.getIntInput(0, 2);
 
 			switch (intInput) {
-				case 1:
-					processOrder();
-					break;
-				case 2:
-					processReview(currentMember.get());
-					break;
-				case 0:
+				case 1 -> processOrder(currentMember.get());
+				case 2 -> processReview(currentMember.get());
+				case 0 -> {
 					return;
+				}
 			}
 		}
 	}
@@ -52,22 +49,17 @@ public class ShopFacadeController {
 			int intInput = InputUtils.getIntInput(0, 3);
 
 			switch (intInput) {
-				case 1:
-					reviewController.writeReview(currentMember);
-					break;
-				case 2:
-					reviewController.showOwnReview(currentMember);
-					break;
-				case 3:
-					reviewController.showAllReview();
-					break;
-				case 0:
+				case 1 -> reviewController.writeReview(currentMember);
+				case 2 -> reviewController.showOwnReview(currentMember);
+				case 3 -> reviewController.showAllReview();
+				case 0 -> {
 					return;
+				}
 			}
 		}
 	}
 
-	private void processOrder() {
+	private void processOrder(Member member) {
 		while (true) {
 			EquipmentType[] equipmentTypes = EquipmentType.getEquipmentTypes();
 			for (int i = 0; i < equipmentTypes.length; i++) {
@@ -84,20 +76,13 @@ public class ShopFacadeController {
 			System.out.print("선택 : ");
 			int intInput = InputUtils.getIntInput(0, 4);
 			switch (intInput) {
-				case 1:
-					orderController.createMonitorOrder();
-					break;
-				case 2:
-					orderController.createLaptopOrder();
-					break;
-				case 3:
-					orderController.createKeyboardOrder();
-					break;
-				case 4:
-					orderController.viewMyOrders();
-					break;
-				case 0:
+				case 1 -> orderController.createMonitorOrder(member);
+				case 2 -> orderController.createLaptopOrder(member);
+				case 3 -> orderController.createKeyboardOrder(member);
+				case 4 -> orderController.viewMyOrders(member);
+				case 0 -> {
 					return;
+				}
 			}
 		}
 	}

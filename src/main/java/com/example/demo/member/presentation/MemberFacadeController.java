@@ -21,20 +21,13 @@ public class MemberFacadeController {
 
 			int intInput = InputUtils.getIntInput(0, getMaxChoice(currentMember.isPresent()));
 			switch (intInput) {
-				case 1:
-					memberController.signUp();
-					break;
-				case 2:
-					memberController.login();
-					break;
-				case 3:
-					memberController.getOwnInfo();
-					break;
-				case 4:
-					memberController.recharge();
-					break;
-				case 0:
+				case 1 -> memberController.signUp();
+				case 2 -> memberController.login();
+				case 3 -> memberController.getOwnInfo();
+				case 4 -> memberController.recharge();
+				case 0 -> {
 					return;
+				}
 			}
 		}
 	}
