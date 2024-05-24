@@ -1,4 +1,4 @@
-package com.example.demo.order.presentation;
+package com.example.demo.shop.presentation;
 
 import java.util.List;
 
@@ -7,16 +7,16 @@ import com.example.demo.common.utils.EnumUtils;
 import com.example.demo.common.utils.FormatUtils;
 import com.example.demo.common.utils.InputUtils;
 import com.example.demo.member.domain.Member;
-import com.example.demo.order.application.OrderService;
-import com.example.demo.order.application.dto.OrderInfoResponse;
-import com.example.demo.order.domain.Order;
-import com.example.demo.order.domain.keyboard.Keyboard;
-import com.example.demo.order.domain.keyboard.LayoutType;
-import com.example.demo.order.domain.laptop.Laptop;
-import com.example.demo.order.domain.laptop.OSType;
-import com.example.demo.order.domain.monitor.Monitor;
-import com.example.demo.order.domain.monitor.MonitorType;
-import com.example.demo.order.exception.OrderException;
+import com.example.demo.shop.application.OrderService;
+import com.example.demo.shop.application.dto.OrderInfoResponse;
+import com.example.demo.shop.domain.Order;
+import com.example.demo.shop.domain.keyboard.Keyboard;
+import com.example.demo.shop.domain.keyboard.LayoutType;
+import com.example.demo.shop.domain.laptop.Laptop;
+import com.example.demo.shop.domain.laptop.OSType;
+import com.example.demo.shop.domain.monitor.Monitor;
+import com.example.demo.shop.domain.monitor.MonitorType;
+import com.example.demo.shop.exception.OrderException;
 
 public class OrderController {
 

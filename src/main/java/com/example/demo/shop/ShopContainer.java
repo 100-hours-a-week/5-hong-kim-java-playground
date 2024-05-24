@@ -1,16 +1,16 @@
-package com.example.demo.order;
+package com.example.demo.shop;
 
 import com.example.demo.member.MemberContainer;
-import com.example.demo.order.application.OrderService;
-import com.example.demo.order.domain.repository.OrderRepository;
-import com.example.demo.order.infrastructure.InMemoryOrderRepository;
-import com.example.demo.order.presentation.OrderController;
-import com.example.demo.order.presentation.OrderFacadeController;
+import com.example.demo.shop.application.OrderService;
+import com.example.demo.shop.domain.repository.OrderRepository;
+import com.example.demo.shop.infrastructure.InMemoryOrderRepository;
+import com.example.demo.shop.presentation.OrderController;
+import com.example.demo.shop.presentation.ShopFacadeController;
 
 // Initialization on demand holder idiom 방법으로 SingleTon 구현
-public class OrderContainer {
+public class ShopContainer {
 
-	private OrderContainer() {  // 인스턴스화 방지
+	private ShopContainer() {  // 인스턴스화 방지
 	}
 
 	private static class OrderRepositoryHolder {
@@ -41,10 +41,10 @@ public class OrderContainer {
 	}
 
 	private static class OrderFacadeControllerHolder {
-		private static final OrderFacadeController INSTANCE = new OrderFacadeController(orderController());
+		private static final ShopFacadeController INSTANCE = new ShopFacadeController(orderController());
 	}
 
-	public static OrderFacadeController orderFacadeController() {
+	public static ShopFacadeController orderFacadeController() {
 		return OrderFacadeControllerHolder.INSTANCE;
 	}
 }

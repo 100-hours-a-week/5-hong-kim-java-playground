@@ -1,6 +1,6 @@
-package com.example.demo.order.application.dto;
+package com.example.demo.shop.application.dto;
 
-import com.example.demo.order.domain.Order;
+import com.example.demo.shop.domain.Order;
 
 public record OrderInfoResponse(
 	String itemName,

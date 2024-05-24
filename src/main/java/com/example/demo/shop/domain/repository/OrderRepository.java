@@ -1,9 +1,9 @@
-package com.example.demo.order.domain.repository;
+package com.example.demo.shop.domain.repository;
 
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.order.domain.Order;
+import com.example.demo.shop.domain.Order;
 
 public interface OrderRepository {
 

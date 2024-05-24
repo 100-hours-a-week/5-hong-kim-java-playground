@@ -1,17 +1,19 @@
-package com.example.demo.order.presentation;
+package com.example.demo.shop.presentation;
 
 import java.util.Optional;
 
 import com.example.demo.common.auth.AuthContext;
 import com.example.demo.common.utils.InputUtils;
 import com.example.demo.member.domain.Member;
-import com.example.demo.order.domain.EquipmentType;
+import com.example.demo.shop.domain.EquipmentType;
 
-public class OrderFacadeController {
+public class ShopFacadeController {
+
+	private static final StringBuilder stringBuilder = new StringBuilder();
 
 	private final OrderController orderController;
 
-	public OrderFacadeController(OrderController orderController) {
+	public ShopFacadeController(OrderController orderController) {
 		this.orderController = orderController;
 	}
 

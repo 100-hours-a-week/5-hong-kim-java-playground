@@ -1,15 +1,15 @@
-package com.example.demo.order.domain.laptop;
+package com.example.demo.shop.domain.monitor;
 
-public enum OSType {
-	MACOS("MacOs", 3_000_000L),
-	WINDOWS("Windows", 2_000_000L),
-	LINUX("Linux", 1_700_000L),
+public enum MonitorType {
+	FHD("FHD", 300_000L),
+	QHD("QHD", 500_000L),
+	UHD("UHD", 700_000L),
 	;
 
 	private final String description;
 	private final Long price;
 
-	OSType(String description, Long price) {
+	MonitorType(String description, Long price) {
 		this.description = description;
 		this.price = price;
 	}
@@ -22,8 +22,8 @@ public enum OSType {
 		return price;
 	}
 
-	// public static Optional<OSType> findTypeByName(String name) {
-	// 	return Arrays.stream(OSType.values())
+	// public static Optional<MonitorType> findTypeByName(String name) {
+	// 	return Arrays.stream(MonitorType.values())
 	// 		.filter(memberType -> memberType.name().equals(name))
 	// 		.findFirst();
 	// }

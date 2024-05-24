@@ -1,7 +1,7 @@
-package com.example.demo.order.domain.laptop;
+package com.example.demo.shop.domain.laptop;
 
-import com.example.demo.order.domain.EquipmentType;
-import com.example.demo.order.domain.Order;
+import com.example.demo.shop.domain.EquipmentType;
+import com.example.demo.shop.domain.Order;
 
 public class Laptop extends Order {
 

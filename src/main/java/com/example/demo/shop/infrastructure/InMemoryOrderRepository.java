@@ -1,4 +1,4 @@
-package com.example.demo.order.infrastructure;
+package com.example.demo.shop.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-import com.example.demo.order.domain.Order;
-import com.example.demo.order.domain.repository.OrderRepository;
+import com.example.demo.shop.domain.Order;
+import com.example.demo.shop.domain.repository.OrderRepository;
 
 public class InMemoryOrderRepository implements OrderRepository {
 

@@ -1,16 +1,16 @@
-package com.example.demo.order.application;
+package com.example.demo.shop.application;
 
-import static com.example.demo.order.exception.OrderExceptionType.*;
+import static com.example.demo.shop.exception.OrderExceptionType.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.example.demo.member.application.MemberService;
 import com.example.demo.member.domain.Member;
-import com.example.demo.order.application.dto.OrderInfoResponse;
-import com.example.demo.order.domain.Order;
-import com.example.demo.order.domain.repository.OrderRepository;
-import com.example.demo.order.exception.OrderException;
+import com.example.demo.shop.application.dto.OrderInfoResponse;
+import com.example.demo.shop.domain.Order;
+import com.example.demo.shop.domain.repository.OrderRepository;
+import com.example.demo.shop.exception.OrderException;
 
 public class OrderService {
 

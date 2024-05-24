@@ -1,4 +1,4 @@
-package com.example.demo.order.exception;
+package com.example.demo.shop.exception;
 
 import com.example.demo.common.exception.BaseExceptionType;
 

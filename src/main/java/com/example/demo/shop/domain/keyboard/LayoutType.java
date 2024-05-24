@@ -1,4 +1,4 @@
-package com.example.demo.order.domain.keyboard;
+package com.example.demo.shop.domain.keyboard;
 
 public enum LayoutType {
 	FULL_SIZE("104키", 200_000L),

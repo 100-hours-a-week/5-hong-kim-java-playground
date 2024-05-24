@@ -1,4 +1,4 @@
-package com.example.demo.order.domain;
+package com.example.demo.shop.domain;
 
 public enum EquipmentType {
 	MONITOR("모니터"),
