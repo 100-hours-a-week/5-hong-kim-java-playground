@@ -12,8 +12,9 @@ public class Order extends BaseTimeEntity {
 	private String location;
 	private EquipmentType equipmentType;
 
-	public Order(int quantity, Long price, String location, EquipmentType equipmentType) {
+	public Order(String username, int quantity, Long price, String location, EquipmentType equipmentType) {
 		super(LocalDateTime.now());
+		this.username = username;
 		this.quantity = quantity;
 		this.price = price;
 		this.location = location;

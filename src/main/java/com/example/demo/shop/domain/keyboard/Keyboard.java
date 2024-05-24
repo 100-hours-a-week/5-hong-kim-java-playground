@@ -8,22 +8,30 @@ public class Keyboard extends Order {
 	private LayoutType layoutType;
 
 	public Keyboard(
+		String username,
 		int quantity,
 		String location,
 		LayoutType layoutType
 	) {
-		super(quantity, layoutType.getPrice(), location, EquipmentType.KEYBOARD);
+		super(username, quantity, layoutType.getPrice(), location, EquipmentType.KEYBOARD);
 		this.layoutType = layoutType;
 	}
 
-	public LayoutType getKeyboardLayoutType() {
-		return layoutType;
+	public String getLayoutTypeToString() {
+		return layoutType.toString();
 	}
 
 	public static class Builder {
+
+		private String username;
 		private int quantity;
 		private String location;
 		private LayoutType layoutType;
+
+		public Builder username(String username) {
+			this.username = username;
+			return this;
+		}
 
 		public Builder quantity(int quantity) {
 			this.quantity = quantity;
@@ -41,7 +49,7 @@ public class Keyboard extends Order {
 		}
 
 		public Keyboard build() {
-			return new Keyboard(quantity, location, layoutType);
+			return new Keyboard(username, quantity, location, layoutType);
 		}
 	}
 }

@@ -8,22 +8,30 @@ public class Laptop extends Order {
 	private OSType osType;
 
 	public Laptop(
+		String username,
 		int quantity,
 		String location,
 		OSType osType
 	) {
-		super(quantity, osType.getPrice(), location, EquipmentType.LAPTOP);
+		super(username, quantity, osType.getPrice(), location, EquipmentType.LAPTOP);
 		this.osType = osType;
 	}
 
-	public OSType getOsType() {
-		return osType;
+	public String getOsTypeToString() {
+		return osType.toString();
 	}
 
 	public static class Builder {
+
+		private String username;
 		private int quantity;
 		private String location;
 		private OSType osType;
+
+		public Builder username(String username) {
+			this.username = username;
+			return this;
+		}
 
 		public Builder quantity(int quantity) {
 			this.quantity = quantity;
@@ -41,7 +49,7 @@ public class Laptop extends Order {
 		}
 
 		public Laptop build() {
-			return new Laptop(quantity, location, osType);
+			return new Laptop(username, quantity, location, osType);
 		}
 	}
 }
