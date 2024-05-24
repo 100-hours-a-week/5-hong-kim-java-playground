@@ -39,7 +39,9 @@ public class ShopContainer {
 	}
 
 	private static class OrderControllerHolder {
-		private static final OrderController INSTANCE = new OrderController(orderService());
+		private static final OrderController INSTANCE = new OrderController(
+			orderService(), MemberContainer.memberService()
+		);
 	}
 
 	public static OrderController orderController() {

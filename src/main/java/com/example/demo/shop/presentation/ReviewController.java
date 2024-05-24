@@ -26,18 +26,13 @@ public class ReviewController {
 	}
 
 	public void showOwnReview(Member member) {
-		getReviewInfo(member).ifPresent(review -> {
-			System.out.println(review.username() + "님이 작성하신 리뷰 입니다.");
-			System.out.println("| >> 내용 : " + review.reviewMessage());
-		});
+		getReviewInfo(member).ifPresent(this::showReview);
 	}
 
 	public void showAllReview() {
 		getReviewInfoList().ifPresent(reviews -> {
 			for (ReviewInfoResponse review : reviews) {
-				System.out.println(review.username() + "님이 작성하신 리뷰 입니다.");
-				System.out.println("| >> 내용 : " + review.reviewMessage());
-				System.out.println("| ---------------------------");
+				showReview(review);
 			}
 		});
 	}
@@ -58,5 +53,11 @@ public class ReviewController {
 			System.out.println(ex.getMessage());
 			return Optional.empty();
 		}
+	}
+
+	private void showReview(ReviewInfoResponse review) {
+		System.out.println("| >> 작성자 : " + review.username());
+		System.out.println("| >> 내용 : " + review.reviewMessage());
+		System.out.println("| ---------------------------");
 	}
 }
