@@ -1,6 +1,7 @@
 package com.example.demo.async;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import com.example.demo.common.domain.BaseTimeEntity;
@@ -25,7 +26,7 @@ public class EventConsumerDispatch {
 		handlers.put(Review.class, ShopContainer.reviewRepository());
 	}
 
-	public static <T> EventConsumer findFitConsumer(Class<T> clazz) {
-		return handlers.get(clazz);
+	public static <T> Optional<EventConsumer<? extends BaseTimeEntity>> findFitConsumer(Class<T> clazz) {
+		return Optional.ofNullable(handlers.get(clazz));
 	}
 }

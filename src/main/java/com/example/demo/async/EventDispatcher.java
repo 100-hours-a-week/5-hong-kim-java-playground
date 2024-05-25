@@ -25,18 +25,23 @@ public class EventDispatcher implements Runnable {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	private <T extends BaseTimeEntity> void dispatch(T entity) {
-		EventConsumer<T> consumer = (EventConsumer<T>)EventConsumerDispatch.findFitConsumer(entity.getClass());
-		if (consumer != null) {
-			System.out.println("\n| (async) >> 비동기 이벤트 publish - command 작업");
+		EventConsumerDispatch.findFitConsumer(entity.getClass())
+			.ifPresentOrElse(
+				consumer -> execute((EventConsumer<T>)consumer, entity),
+				() -> {
+					System.out.println("\n| (async) >> 등록된 컨슈머가 없음 :: " + entity.getClass().getName());
+					System.out.println("\n| (async) >> 비동기 이벤트 publish fail");
+				}
+			);
+	}
 
-			consumer.save(entity);  // 각 도메인 Repository 의 save() 호출
+	private <T extends BaseTimeEntity> void execute(EventConsumer<T> consumer, T entity) {
+		System.out.println("\n| (async) >> 비동기 이벤트 publish - command 작업");
 
-			System.out.println("\n| (async) >> 비동기 작업 완료 - 저장 완료");
-			return;
-		}
+		consumer.save(entity);  // 각 도메인 Repository 의 save() 호출
 
-		System.out.println("\n| (async) >> 등록된 컨슈머가 없음 :: " + entity.getClass().getName());
-		System.out.println("\n| (async) >>비동기 이벤트 publish fail");
+		System.out.println("\n| (async) >> 비동기 작업 완료 - 저장 완료");
 	}
 }
