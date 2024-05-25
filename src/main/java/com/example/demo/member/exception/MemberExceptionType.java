@@ -8,6 +8,7 @@ public enum MemberExceptionType implements BaseExceptionType {
 	MISMATCH_PASSWORD("일치하지 않은 비밀번호 입니다"),
 	INVALID_MEMBER_TYPE("유효하지 않은 회원 타입입니다"),
 	UN_AUTHORIZATION_MEMBER("로그인 정보가 없습니다"),
+	INSUFFICIENT_BALANCE("잔액이 부족합니다."),
 	;
 
 	private final String message;

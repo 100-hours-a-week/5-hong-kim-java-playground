@@ -54,6 +54,12 @@ public class MemberService {
 
 	public void processPayment(Long balance) {
 		Member member = getCurrentMember();
+
+		Long currentBalance = member.getBalance();
+		if (currentBalance < balance) {
+			throw new MemberException(INSUFFICIENT_BALANCE);
+		}
+
 		member.decreaseBalance(balance);
 	}
 
