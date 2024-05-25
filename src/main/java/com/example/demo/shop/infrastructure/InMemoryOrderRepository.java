@@ -15,7 +15,8 @@ public class InMemoryOrderRepository implements OrderRepository {
 	private final Map<String, List<Order>> orderMap = new ConcurrentHashMap<>();
 
 	@Override
-	public void save(String username, Order order) {
+	public void save(Order order) {
+		String username = order.getUsername();
 		List<Order> orders = orderMap.computeIfAbsent(
 			username, k -> new ArrayList<>()
 		);
