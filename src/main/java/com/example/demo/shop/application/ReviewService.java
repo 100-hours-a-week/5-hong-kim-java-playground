@@ -5,6 +5,7 @@ import static com.example.demo.shop.exception.ReviewExceptionType.*;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.async.EventProducer;
 import com.example.demo.member.domain.Member;
 import com.example.demo.shop.application.dto.ReviewInfoResponse;
 import com.example.demo.shop.domain.Review;
@@ -34,7 +35,8 @@ public class ReviewService {
 				.reviewMessage(message)
 				.build());
 
-		reviewRepository.save(review);
+		// reviewRepository.save(review);
+		EventProducer.publish(review);
 	}
 
 	public ReviewInfoResponse showOwnReview(Member member) {

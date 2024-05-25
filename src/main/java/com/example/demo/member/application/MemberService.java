@@ -2,6 +2,7 @@ package com.example.demo.member.application;
 
 import static com.example.demo.member.exception.MemberExceptionType.*;
 
+import com.example.demo.async.EventProducer;
 import com.example.demo.common.auth.AuthContext;
 import com.example.demo.member.application.dto.OwnInfoResponse;
 import com.example.demo.member.domain.Member;
@@ -33,7 +34,8 @@ public class MemberService {
 			.memberType(memberType)
 			.build();
 
-		memberRepository.save(member);
+		// memberRepository.save(member);
+		EventProducer.publish(member);
 	}
 
 	public void loginMember(String username, String password) {

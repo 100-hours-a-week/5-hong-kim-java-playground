@@ -5,8 +5,10 @@ import static com.example.demo.shop.exception.OrderExceptionType.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.example.demo.async.EventProducer;
 import com.example.demo.member.application.MemberService;
 import com.example.demo.member.domain.Member;
+import com.example.demo.member.exception.MemberException;
 import com.example.demo.shop.application.dto.OrderInfoResponse;
 import com.example.demo.shop.domain.Order;
 import com.example.demo.shop.domain.repository.OrderRepository;
@@ -22,20 +24,16 @@ public class OrderService {
 		this.orderRepository = orderRepository;
 	}
 
-	public void orderedItem(Member member, Order order) {
-		Long price = order.getTotalPrice();
-		int quantity = order.getQuantity();
-		long totalPrice = price * quantity;
+	public void orderedItem(Order order) {
+		Long totalPrice = order.getTotalPrice();
 
-		Long balance = member.getBalance();
-		if (balance < totalPrice) {
+		try {
+			memberService.processPayment(totalPrice);
+		} catch (MemberException ex) {
 			throw new OrderException(INSUFFICIENT_BALANCE);
 		}
 
-		String username = member.getUsername();
-		orderRepository.save(username, order);
-
-		memberService.processPayment(totalPrice);
+		EventProducer.publish(order);
 	}
 
 	public Long getOrderPrice(Order order) {
