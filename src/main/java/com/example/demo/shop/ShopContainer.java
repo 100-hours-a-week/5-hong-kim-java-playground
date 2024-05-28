@@ -11,7 +11,7 @@ import com.example.demo.shop.presentation.OrderController;
 import com.example.demo.shop.presentation.ReviewController;
 import com.example.demo.shop.presentation.ShopFacadeController;
 
-// Initialization on demand holder idiom 방법으로 SingleTon 구현
+// Initialization on demand holder idiom 방법으로 Singleton 구현
 public class ShopContainer {
 
 	private ShopContainer() {  // 인스턴스화 방지

@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import com.example.demo.member.domain.Member;
 
-// Initialization on demand holder idiom 방법으로 SingleTon 구현
+// Initialization on demand holder idiom 방법으로 Singleton 구현
 public class AuthContext {
 
 	private AuthContext() {  // 인스턴스화 방지
