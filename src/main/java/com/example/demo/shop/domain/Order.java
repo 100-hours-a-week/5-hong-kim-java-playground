@@ -3,9 +3,11 @@ package com.example.demo.shop.domain;
 import java.time.LocalDateTime;
 
 import com.example.demo.common.domain.BaseTimeEntity;
+import com.example.demo.common.utils.FormatUtils;
 
-public class Order extends BaseTimeEntity {
+public class Order implements BaseTimeEntity {
 
+	private LocalDateTime createdAt;
 	private String username;
 	private int quantity;
 	private Long price;
@@ -13,7 +15,7 @@ public class Order extends BaseTimeEntity {
 	private EquipmentType equipmentType;
 
 	public Order(String username, int quantity, Long price, String location, EquipmentType equipmentType) {
-		super(LocalDateTime.now());
+		createdAt = LocalDateTime.now();
 		this.username = username;
 		this.quantity = quantity;
 		this.price = price;
@@ -55,5 +57,10 @@ public class Order extends BaseTimeEntity {
 
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+
+	@Override
+	public String getCreatedTimeToString() {
+		return FormatUtils.formatDateTime(createdAt);
 	}
 }

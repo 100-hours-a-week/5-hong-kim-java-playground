@@ -3,14 +3,16 @@ package com.example.demo.shop.domain;
 import java.time.LocalDateTime;
 
 import com.example.demo.common.domain.BaseTimeEntity;
+import com.example.demo.common.utils.FormatUtils;
 
-public class Review extends BaseTimeEntity {
+public class Review implements BaseTimeEntity {
 
+	private LocalDateTime createdAt;
 	private String username;
 	private String reviewMessage;
 
-	public Review(LocalDateTime createdAt, String username, String reviewMessage) {
-		super(createdAt);
+	public Review(String username, String reviewMessage) {
+		createdAt = LocalDateTime.now();
 		this.username = username;
 		this.reviewMessage = reviewMessage;
 	}
@@ -25,6 +27,11 @@ public class Review extends BaseTimeEntity {
 
 	public void updateReviewMessage(String reviewMessage) {
 		this.reviewMessage = reviewMessage;
+	}
+
+	@Override
+	public String getCreatedTimeToString() {
+		return FormatUtils.formatDateTime(createdAt);
 	}
 
 	public static class Builder {
@@ -42,7 +49,7 @@ public class Review extends BaseTimeEntity {
 		}
 
 		public Review build() {
-			return new Review(LocalDateTime.now(), username, reviewMessage);
+			return new Review(username, reviewMessage);
 		}
 	}
 }

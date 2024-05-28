@@ -4,16 +4,18 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.example.demo.common.domain.BaseTimeEntity;
+import com.example.demo.common.utils.FormatUtils;
 
-public class Member extends BaseTimeEntity {
+public class Member implements BaseTimeEntity {
 
+	private LocalDateTime createdAt;
 	private String username;
 	private String password;
 	private Long balance;
 	private MemberType memberType;
 
 	public Member(String username, String password, MemberType memberType) {
-		super(LocalDateTime.now());
+		createdAt = LocalDateTime.now();
 		this.username = username;
 		this.password = password;
 		this.balance = memberType.getBalance();
@@ -42,6 +44,11 @@ public class Member extends BaseTimeEntity {
 
 	public boolean isMatchPassword(String password) {
 		return Objects.equals(this.password, password);
+	}
+
+	@Override
+	public String getCreatedTimeToString() {
+		return FormatUtils.formatDateTime(createdAt);
 	}
 
 	public static class Builder {

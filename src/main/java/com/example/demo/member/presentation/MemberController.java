@@ -1,5 +1,6 @@
 package com.example.demo.member.presentation;
 
+import com.example.demo.common.utils.FormatUtils;
 import com.example.demo.common.utils.InputUtils;
 import com.example.demo.member.application.MemberService;
 import com.example.demo.member.application.dto.OwnInfoResponse;
@@ -71,7 +72,7 @@ public class MemberController {
 			.append("\n| >> 생성일 : ")
 			.append(currentMemberInfo.createdAt())
 			.append("\n| >> 잔액 : ")
-			.append(currentMemberInfo.balance());
+			.append(FormatUtils.formatWithCommas(currentMemberInfo.balance()));
 
 		System.out.println(stringBuilder);
 		stringBuilder.setLength(0);
